@@ -1,9 +1,23 @@
 import React from 'react';
+import MenuItem from '../../Shared/MenuItem/MenuItem';
+import Cover from '../../Shared/Cover/Cover';
 
-const MenuCategory = () => {
+const MenuCategory = ({ item, title,coverImg,titleDescription }) => {
     return (
-        <div>
-            <h1>MenuCategory</h1>
+        <div className='pt-8'>
+            {title && <Cover
+                img={coverImg}
+                title={title}
+                titleDescription={titleDescription}
+            ></Cover>}
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-10 my-16'>
+                {
+                    item.map(item => <MenuItem
+                        key={item._id}
+                        item={item}
+                    ></MenuItem>)
+                }
+            </div>
         </div>
     );
 };
