@@ -5,6 +5,7 @@ import BistroBoss from '../BistroBoss/BistroBoss';
 import PopularMenu from '../PopularMenu/PopularMenu';
 import Contact from '../Contact/Contact';
 import Recommends from '../Recommends/Recommends';
+import Featured from '../Featured/Featured';
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
             <PopularMenu></PopularMenu>
             <Contact></Contact>
             <Recommends></Recommends>
+            <Featured></Featured>
         </div>
     );
 };
