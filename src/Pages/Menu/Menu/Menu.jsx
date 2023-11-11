@@ -9,6 +9,7 @@ import soupImg from '../../../assets/menu/soup-bg.jpg'
 import useMenu from '../../../hooks/useMenu';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import MenuCategory from '../MenuCategory/MenuCategory';
+import Navbar from '../../Shared/NavBar/Navbar';
 
 const Menu = () => {
     const [menu] = useMenu();
@@ -22,6 +23,7 @@ const Menu = () => {
             <Helmet>
                 <title> Bistro Boss ! Menu</title>
             </Helmet>
+            <Navbar></Navbar>
             <Cover
                 img={menuImg}
                 title="our menu"
