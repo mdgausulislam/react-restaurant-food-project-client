@@ -14,15 +14,15 @@ const Order = () => {
     const { category } = useParams();
     console.log(category);
 
-    const initialIndex=categories.indexOf(category);
+    const initialIndex = categories.indexOf(category);
     console.log(initialIndex);
 
 
     const [tabIndex, setTabIndex] = useState(initialIndex);
     const [menu] = useMenu();
-   console.log(menu);
+    console.log(menu);
 
-    const desserts= menu.filter(item => item.category === 'dessert');
+    const dessert = menu.filter(item => item.category === 'dessert');
     const soup = menu.filter(item => item.category === 'soup');
     const salad = menu.filter(item => item.category === 'salad');
     const pizza = menu.filter(item => item.category === 'pizza');
@@ -30,7 +30,7 @@ const Order = () => {
 
     return (
         <div>
-             <Helmet>
+            <Helmet>
                 <title> Bistro Boss ! Order Food</title>
             </Helmet>
             <Cover
@@ -44,26 +44,14 @@ const Order = () => {
                     <Tab>Salad</Tab>
                     <Tab>Pizza</Tab>
                     <Tab>Soup</Tab>
-                    <Tab>Desert</Tab>
+                    <Tab>Dessert</Tab>
                     <Tab>Drinks</Tab>
                 </TabList>
-                <TabPanel>
-                    <OrderTab
-                        items={salad}
-                    ></OrderTab>
-                </TabPanel>
-                <TabPanel>   <OrderTab
-                    items={pizza}
-                ></OrderTab></TabPanel>
-                <TabPanel>  <OrderTab
-                    items={soup}
-                ></OrderTab></TabPanel>
-                <TabPanel>  <OrderTab
-                    items={desserts}
-                ></OrderTab></TabPanel>
-                <TabPanel>  <OrderTab
-                    items={drinks}
-                ></OrderTab></TabPanel>
+                <TabPanel><OrderTab items={salad}></OrderTab></TabPanel>
+                <TabPanel><OrderTab items={pizza}></OrderTab></TabPanel>
+                <TabPanel><OrderTab items={soup}></OrderTab></TabPanel>
+                <TabPanel><OrderTab items={dessert}></OrderTab></TabPanel>
+                <TabPanel><OrderTab items={drinks}></OrderTab></TabPanel>
             </Tabs>
         </div>
     );
