@@ -17,7 +17,7 @@ import Order from "../Pages/Order/Order/Order";
             element:<Home></Home>
         },
         {
-          path:'/menu',
+          path:'menu',
           element:<Menu></Menu>
         },
         {

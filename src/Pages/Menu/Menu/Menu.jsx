@@ -35,32 +35,32 @@ const Menu = () => {
                 subHeading={"Don't miss"}
             ></SectionTitle>
             {/* offered menu items */}
-            <MenuCategory item={offered}></MenuCategory>
+            <MenuCategory items={offered}></MenuCategory>
             {/* deserts menu items */}
             <MenuCategory
-                item={desserts}
-                title='Desert'
+                items={desserts}
+                title='desert'
                 coverImg={dessertImg}
                 titleDescription='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
             ></MenuCategory>
             {/* pizza menu items */}
             <MenuCategory
-                item={pizza}
-                title='Pizza'
+                items={pizza}
+                title='pizza'
                 coverImg={pizzaImg}
                 titleDescription='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
             ></MenuCategory>
             {/* salad menu items */}
             <MenuCategory
-                item={salads}
-                title='Salads'
+                items={salads}
+                title='salad'
                 coverImg={saladImg}
                 titleDescription='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
             ></MenuCategory>
             {/* soup menu items */}
             <MenuCategory
-                item={soups}
-                title='Soups'
+                items={soups}
+                title='soup'
                 coverImg={soupImg}
                 titleDescription='Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
             ></MenuCategory>
