@@ -46,7 +46,7 @@ import MyCart from "../Pages/DashBoard/MyCart/MyCart";
     },
     {
       path:'dashboard',
-      element:<DashBoard></DashBoard>,
+      element:<DashBoard><DashBoard></DashBoard></DashBoard>,
       children:[
         {
           path:'myCart',

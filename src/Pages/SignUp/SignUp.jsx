@@ -8,28 +8,50 @@ import Swal from 'sweetalert2';
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
-    const navigate =useNavigate();
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log(data)
-        createUser(data.email,data.password)
-        .then(result=>{
-            const loggedUser =result.user;
-            console.log(loggedUser);
-            updateUserProfile(data.name,data.photoURL)
-            .then(()=>{
-                console.log('user profile updated');
-                reset();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "user created successfully.",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        const saveUsers = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUsers)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                console.log(data);
+                                if (data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        position: "top-end",
+                                        icon: "success",
+                                        title: "user created successfully.",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                }
+                            })
+
+                        // reset();
+                        // Swal.fire({
+                        //     position: "top-end",
+                        //     icon: "success",
+                        //     title: "user created successfully.",
+                        //     showConfirmButton: false,
+                        //     timer: 1500
+                        //   });
+                    })
+                    .then(error => console.log(error))
             })
-            .then(error=>console.log(error))
-        })
         navigate('/');
     };
 
@@ -57,7 +79,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" {...register("photoURL", { required: true })}  placeholder="Photo URL" className="input input-bordered" />
+                                <input type="text" {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
                                 {errors.photoURL && <span className='text-red-600'>Photo URL field is required</span>}
                             </div>
                             <div className="form-control">
