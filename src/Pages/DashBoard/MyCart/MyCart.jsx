@@ -2,12 +2,42 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import useCart from '../../../hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MyCart = () => {
-    const [cart] = useCart();
-    const total = cart.reduce((sum, item) => item.price + sum, 0)
+    const [cart,refetch] = useCart();
+    const total = cart.reduce((sum, item) => item.price + sum, 0);
+    const handleDelete = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/carts/${item._id}`, {
+                    method: 'DELETE',
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
     return (
-        <div>
+        <div className='w-full'>
             <Helmet>
                 <title> Bistro Boss ! My Cart</title>
             </Helmet>
@@ -41,9 +71,9 @@ const MyCart = () => {
                                     </div>
                                 </td>
                                 <td>{item.name}</td>
-                                <td className='text-end'>${item.price}</td>
+                                <td>${item.price}</td>
                                 <td>
-                                    <button className="btn btn-ghost btn-md bg-red-600 text-white"><FaTrashAlt /></button>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost btn-md bg-red-600 text-white"><FaTrashAlt /></button>
                                 </td>
                             </tr>)
                         }
