@@ -12,19 +12,29 @@ const SocialLogin = () => {
 
     const from = location.state?.from?.pathname || "/";
 
-
     const handleGoogleLogin = () => {
         googleLogin(provider)
             .then(result => {
                 const googleLogged = result.user;
                 console.log(googleLogged);
+                const saveUsers = { name: googleLogged.displayName, email: googleLogged.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUsers)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.insertedId) {
+                            navigate(from, { replace: true });
+                        }
+                    })
             })
             .then(error => console.log(error))
-
-        navigate(from, { replace: true });
     }
-
-
 
     return (
         <div className='text-center pb-5'>
