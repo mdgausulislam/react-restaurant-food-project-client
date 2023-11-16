@@ -1,22 +1,19 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialLogin = () => {
-    const provider = new GoogleAuthProvider();
-    const { googleLogin } = useContext(AuthContext);
+    const { googleSignIn } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || "/";
 
     const handleGoogleLogin = () => {
-        googleLogin(provider)
+        googleSignIn()
             .then(result => {
                 const googleLogged = result.user;
-                console.log(googleLogged);
                 const saveUsers = { name: googleLogged.displayName, email: googleLogged.email }
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
@@ -28,9 +25,7 @@ const SocialLogin = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
-                        if (data.insertedId) {
-                            navigate(from, { replace: true });
-                        }
+                        navigate(from, { replace: true });
                     })
             })
             .then(error => console.log(error))
