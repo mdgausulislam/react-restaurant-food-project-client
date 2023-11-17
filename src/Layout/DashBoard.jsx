@@ -23,7 +23,7 @@ const DashBoard = () => {
 
                     {
                         isAdmin ? <>
-                            {/* Sidebar content here */}
+                          
                             <li><NavLink to='/dashboard/home'><FaHome /> Admin Home</NavLink></li>
                             <li><NavLink to='/dashboard/reservations'><FaUtensils /> Add Items</NavLink></li>
                             <li><NavLink to='/dashboard/history'><FaWallet /> Manage Item</NavLink></li>
@@ -31,7 +31,7 @@ const DashBoard = () => {
                             <li><NavLink to='/dashboard/allUsers'><FaUsers />All Users </NavLink></li>
 
                         </> : <>
-                            {/* Sidebar content here */}
+                    
                             <li><NavLink to='/dashboard/home'><FaHome /> User Home</NavLink></li>
                             <li><NavLink to='/dashboard/reservations'><FaCalendarAlt /> Reservations</NavLink></li>
                             <li><NavLink to='/dashboard/history'><FaWallet /> Payment History</NavLink></li>
@@ -41,6 +41,13 @@ const DashBoard = () => {
                             </li>
                         </>
                     }
+                    {/* <li><NavLink to='/dashboard/home'><FaHome /> User Home</NavLink></li>
+                    <li><NavLink to='/dashboard/reservations'><FaCalendarAlt /> Reservations</NavLink></li>
+                    <li><NavLink to='/dashboard/history'><FaWallet /> Payment History</NavLink></li>
+                    <li className='flex'>
+                        <NavLink to='/dashboard/myCart'><FaShoppingCart /> My Cart
+                            <div className="badge badge-secondary">+{cart?.length || 0}</div></NavLink>
+                    </li> */}
                     <div className="divider"></div>
                     <li><NavLink to='/'><FaHome /> Home</NavLink></li>
                     <li><NavLink to='/menu'><FaHome /> Menu</NavLink></li>
