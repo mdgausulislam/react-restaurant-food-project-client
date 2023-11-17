@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 const useCart = () => {
     const { user } = useContext(AuthContext);
-    const token=localStorage.getItem
+    const token=localStorage.getItem('access-token')
 
     const { refetch,  data: cart=[]} = useQuery({
         queryKey: ['carts', user?.email],

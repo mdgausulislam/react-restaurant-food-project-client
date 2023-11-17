@@ -12,7 +12,6 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
@@ -29,7 +28,6 @@ const SignUp = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                console.log(data);
                                 if (data.insertedId) {
                                     reset();
                                     Swal.fire({
@@ -39,21 +37,15 @@ const SignUp = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
+                                    navigate('/');
                                 }
                             })
 
-                        // reset();
-                        // Swal.fire({
-                        //     position: "top-end",
-                        //     icon: "success",
-                        //     title: "user created successfully.",
-                        //     showConfirmButton: false,
-                        //     timer: 1500
-                        //   });
+
                     })
-                    .then(error => console.log(error))
+                    .catch(error => console.log(error))
             })
-        navigate('/');
+
     };
 
     return (
