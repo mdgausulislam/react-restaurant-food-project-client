@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaFileContract, FaFirstOrder, FaUtensils, FaBook, FaUsers } from 'react-icons/fa'
 import useCart from '../hooks/useCart';
+import useAdmin from '../hooks/useAdmin';
 
 const DashBoard = () => {
     const [cart] = useCart();
 
     //TODO: loadData from th server to have dynamic isAdmin based on Data
-    const isAdmin = true;
+    // const isAdmin = true;
+    const [isAdmin]=useAdmin();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />

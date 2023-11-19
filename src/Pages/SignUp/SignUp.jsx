@@ -31,9 +31,9 @@ const SignUp = () => {
                                 if (data.insertedId) {
                                     reset();
                                     Swal.fire({
-                                        position: "top-end",
+                     position: "top-end",
                                         icon: "success",
-                                        title: "user created successfully.",
+                                        title: "us                   er created successfully.",
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
