@@ -1,9 +1,41 @@
 import React from 'react';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import useMenu from '../../../hooks/useMenu';
+import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const MangeItem = () => {
-    const [menu] = useMenu();
+    const [menu, , refetch] = useMenu();
+    const axiosSecure = useAxiosSecure();
+
+    const handleDelete = item => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/menu/${item._id}`)
+                    .then(res => {
+                        console.log('delete items', res.data);
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
+    }
     return (
         <div className='w-full'>
             <SectionTitle
@@ -17,26 +49,19 @@ const MangeItem = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>
-                                <label>
-                                    <input type="checkbox" className="checkbox" />
-                                </label>
-                            </th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>#</th>
+                            <th>Item Image</th>
+                            <th>Category</th>
+                            <th>Price</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            menu.map(item => <tr key={item._id}>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th>
+                            menu.map((item, index) => <tr key={item._id}>
+
+                                <th>{index + 1}</th>
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
@@ -45,19 +70,17 @@ const MangeItem = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">Hart Hagerty</div>
+                                            <div className="font-bold">{item.name}</div>
                                         </div>
                                     </div>
                                 </td>
+                                <td>{item.category}</td>
+                                <td>${item.price}</td>
                                 <td>
-                                    Zemlak, Daniel and Leannon
-                                </td>
-                                <td>Purple</td>
-                                <td>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-ghost btn-xs">details</button>
+                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                             </tr>)
                         }
