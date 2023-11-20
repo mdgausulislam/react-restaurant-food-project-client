@@ -2,12 +2,15 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
 import { useForm } from 'react-hook-form';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 
 const image_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 const AddItem = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${image_hosting_token}`
+    const axiosSecure = useAxiosSecure();
+    const { register, handleSubmit, reset } = useForm();
+    const img_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`
     const onSubmit = data => {
         console.log(data)
         const formData = new FormData();
@@ -18,11 +21,29 @@ const AddItem = () => {
         })
             .then(res => res.json())
             .then(imgResponse => {
-                console.log(imgResponse);
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const { name, price, category, recipe } = data;
+                    const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL };
+                    console.log(newItem);
+                    axiosSecure.post('/menu', newItem)
+                        .then(data => {
+                            console.log("after posting new menu", data.data);
+
+                            if (data.data.insertedId) {
+                                reset();
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Added a new item Inserted Successfully",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
+                        })
+                }
             })
     };
-    console.log(image_hosting_token);
-    console.log(errors);
     return (
         <div className='w-full px-32'>
             <Helmet>
@@ -52,6 +73,7 @@ const AddItem = () => {
                             <option>Pizza</option>
                             <option>Soup</option>
                             <option>Deserts</option>
+                            <option>Desi</option>
                             <option>Salad</option>
                             <option>Drinks</option>
                         </select>
