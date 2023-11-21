@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 const Login = () => {
-    const [disabled, setDisable] = useState(true);
+    const [, setDisable] = useState(true);
     const { signIn } = useContext(AuthContext);
     const location=useLocation();
     const navigate=useNavigate();
@@ -94,7 +94,7 @@ const Login = () => {
                                 </label>
                                 <input type="text" onBlur={handleValidateCaptcha} name='captcha' placeholder="type the text captcha above" className="input input-bordered"/>
                             </div>
-                            {/*TODo: Make button disable for captcha */}
+                            {/* Make button disable for captcha */}
                             <div className="form-control mt-6">
                                 <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                             </div>
