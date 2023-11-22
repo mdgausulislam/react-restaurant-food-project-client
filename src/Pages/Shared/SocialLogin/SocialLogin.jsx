@@ -16,7 +16,7 @@ const SocialLogin = () => {
                 const googleLogged = result.user;
                 console.log(googleLogged);
                 const saveUsers = { name: googleLogged.displayName, email: googleLogged.email }
-                fetch('http://localhost:5000/users', {
+                fetch('https://restaurant-food-project-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -25,16 +25,16 @@ const SocialLogin = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
-                            navigate(from, { replace: true });
+                        navigate(from, { replace: true });
                     })
             })
     }
 
     return (
-        <div className='text-center pb-5'>
+        <div className='text-center pb-4'>
             <div className="divider"></div>
             <button onClick={handleGoogleLogin} className="btn btn-square btn-outline">
-                <FaGoogle />
+                <FaGoogle className='text-red-600'/>
             </button>
         </div>
     );

@@ -19,7 +19,7 @@ const SignUp = () => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         const saveUsers = { name: data.name, email: data.email }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://restaurant-food-project-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -90,10 +90,6 @@ const SignUp = () => {
                                 )}
                                 {errors.password?.maxLength === "required" && (<p className='text-red-600'>password must be less than 20 characters</p>
                                 )}
-
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
                             </div>
 
                             <div className="form-control mt-6">
