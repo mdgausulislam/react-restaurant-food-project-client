@@ -10,33 +10,34 @@ const Recommends = () => {
                 subHeading={'Should Try'}
             ></SectionTitle>
 
-            <div className='grid md:grid-cols-3 gap-6'>
-                <div className="card w-[424px] bg-base-100 shadow-xl">
-                    <img src={recommends} alt="Shoes" className="rounded-xl" />
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title font-bold text-2xl">Caeser Salad</h2>
-                        <p className='px-5'>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
-                        <div className="card-actions">
-                            <button className="btn uppercase text-[#BB8506] border-b-4 border-[#BB8506] text-lg rounded-lg px-5">add to cart</button>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+                <div className="card bg-base-100 shadow-xl">
+                    <figure><img src={recommends} className="rounded-xl" alt="Album" /></figure>
+                    <div className="card-body text-center">
+                        <h2 className="font-bold text-2xl">Caeser Salad</h2>
+                        <p>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
+                        <div className="card-actions justify-center">
+                            <button className="btn uppercase text-[#BB8506] border-b-4 border-[#BB8506] rounded-lg px-5 text-lg">add to cart</button>
                         </div>
                     </div>
                 </div>
-                <div className="card w-[424px] bg-base-100 shadow-xl">
-                    <img src={recommends} alt="Shoes" className="rounded-xl" />
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title font-bold text-2xl">Caeser Salad</h2>
-                        <p className='px-5'>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
-                        <div className="card-actions">
-                            <button className="btn uppercase text-[#BB8506] border-b-4 border-[#BB8506] rounded-lg px-5 text-lg bg-[#1F2937]">add to cart</button>
+               
+                <div className="card bg-base-100 shadow-xl">
+                    <figure><img src={recommends} className="rounded-xl" alt="Album" /></figure>
+                    <div className="card-body text-center">
+                        <h2 className="font-bold text-2xl">Caeser Salad</h2>
+                        <p>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
+                        <div className="card-actions justify-center">
+                        <button className="btn uppercase text-[#BB8506] border-b-4 border-[#BB8506] rounded-lg px-5 text-lg bg-[#1F2937]">add to cart</button>
                         </div>
                     </div>
                 </div>
-                <div className="card w-[424px] bg-base-100 shadow-xl">
-                    <img src={recommends} alt="Shoes" className="rounded-xl" />
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title font-bold text-2xl">Caeser Salad</h2>
-                        <p className='px-5'>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
-                        <div className="card-actions">
+                <div className="card bg-base-100 shadow-xl">
+                    <figure><img src={recommends} className="rounded-xl" alt="Album" /></figure>
+                    <div className="card-body text-center">
+                        <h2 className="font-bold text-2xl">Caeser Salad</h2>
+                        <p>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
+                        <div className="card-actions justify-center">
                             <button className="btn uppercase text-[#BB8506] border-b-4 border-[#BB8506] rounded-lg px-5 text-lg">add to cart</button>
                         </div>
                     </div>
